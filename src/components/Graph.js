@@ -10,7 +10,8 @@ function Graph(props) {
     }
     const tit = props.title
 
-  const usage = (Object.keys(props.data)).map(day => (props.data[day])[tit])
+  const usage = (Object.keys(props.data)).map(day => Object.values((props.data[day])[tit]).reduce((a,b) => a+b,0))
+  console.log(usage)
   const total = usage.reduce((a,b) => a+b,0)
     const state = {
         labels: labels,

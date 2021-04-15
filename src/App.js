@@ -12,45 +12,44 @@ function App() {
   const userName = Object.keys(data)[0]
   const year = date.getFullYear()
   const monthYear = (month.toLowerCase() + year)
-
+  let allTopics = []
   const userData = data["Satyam Kumar"]
-  const dayData = userData[monthYear]
-  
+  var dayData = {}
   var jsonTopic = ''
   var jsonSubTopic = ''
   
 
 
-  for (var key in userData.april2021) {
+  for (var key in userData[monthYear]) {
     var topics = {}
     
-    var jsonData = userData.april2021[key]
+    var jsonData = userData[monthYear][key]
     for (var jsonKey in jsonData)
     {
       var subTopics = {}
       const jsonKeyValue = jsonKey
       jsonKey = jsonKey.split("/")
-     
+      jsonTopic = jsonKey[0]
       if (jsonKey.length === 2) {
         jsonSubTopic = jsonKey[1]
-        jsonTopic = jsonKey[0]
+        
       } else {
-        jsonTopic = jsonKey[0]
         jsonSubTopic = 'total'
       }
-      
+      allTopics.push(jsonTopic)
       subTopics[jsonSubTopic] = jsonData[jsonKeyValue]
       
-      topics[jsonTopic] = Object.assign({}, topics[jsonTopic], subTopics) 
-      
+      topics[jsonTopic] = Object.assign({}, topics[jsonTopic], subTopics)
     }
     
-    console.log(topics, "topic")
-    userData.april2021[key] = topics
+    dayData[key] = topics
+    
     
 
-  } console.log(userData.april2021)
-    const graphs = Object.v(dayData["day01"])
+  } 
+  allTopics = new Set(allTopics);
+  allTopics = Array.from(allTopics)
+    
   return (
     <div className="App" id="app">
       <div class="container-fluid">
@@ -69,7 +68,7 @@ function App() {
           
           <section className={"container"}>
             <ul class="grid-wrapper">
-              {graphs.map((graph) => <li><Graph title={graph} color={"black"} data={dayData} /></li> )}
+              {allTopics.map((topic) => <li><Graph title={topic} color={"black"} data={dayData} /></li> )}
          
       </ul>
   </section>
