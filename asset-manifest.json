@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/Vedic-Api-Usage/static/css/main.02ac4074.chunk.css",
-    "main.js": "/Vedic-Api-Usage/static/js/main.947e4fb5.chunk.js",
-    "main.js.map": "/Vedic-Api-Usage/static/js/main.947e4fb5.chunk.js.map",
+    "main.js": "/Vedic-Api-Usage/static/js/main.a46b0489.chunk.js",
+    "main.js.map": "/Vedic-Api-Usage/static/js/main.a46b0489.chunk.js.map",
     "runtime-main.js": "/Vedic-Api-Usage/static/js/runtime-main.c09b2e30.js",
     "runtime-main.js.map": "/Vedic-Api-Usage/static/js/runtime-main.c09b2e30.js.map",
     "static/css/2.dbc945ad.chunk.css": "/Vedic-Api-Usage/static/css/2.dbc945ad.chunk.css",
-    "static/js/2.d442ec04.chunk.js": "/Vedic-Api-Usage/static/js/2.d442ec04.chunk.js",
-    "static/js/2.d442ec04.chunk.js.map": "/Vedic-Api-Usage/static/js/2.d442ec04.chunk.js.map",
+    "static/js/2.ff1bd3b9.chunk.js": "/Vedic-Api-Usage/static/js/2.ff1bd3b9.chunk.js",
+    "static/js/2.ff1bd3b9.chunk.js.map": "/Vedic-Api-Usage/static/js/2.ff1bd3b9.chunk.js.map",
     "index.html": "/Vedic-Api-Usage/index.html",
     "static/css/2.dbc945ad.chunk.css.map": "/Vedic-Api-Usage/static/css/2.dbc945ad.chunk.css.map",
     "static/css/main.02ac4074.chunk.css.map": "/Vedic-Api-Usage/static/css/main.02ac4074.chunk.css.map",
-    "static/js/2.d442ec04.chunk.js.LICENSE.txt": "/Vedic-Api-Usage/static/js/2.d442ec04.chunk.js.LICENSE.txt"
+    "static/js/2.ff1bd3b9.chunk.js.LICENSE.txt": "/Vedic-Api-Usage/static/js/2.ff1bd3b9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c09b2e30.js",
     "static/css/2.dbc945ad.chunk.css",
-    "static/js/2.d442ec04.chunk.js",
+    "static/js/2.ff1bd3b9.chunk.js",
     "static/css/main.02ac4074.chunk.css",
-    "static/js/main.947e4fb5.chunk.js"
+    "static/js/main.a46b0489.chunk.js"
   ]
 }
