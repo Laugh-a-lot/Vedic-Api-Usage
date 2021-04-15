@@ -9,6 +9,7 @@ function Graph(props) {
         labels.push(i.toString());
     }
     const tit = props.title
+
   const usage = (Object.keys(props.data)).map(day => (props.data[day])[tit])
   const total = usage.reduce((a,b) => a+b,0)
     const state = {

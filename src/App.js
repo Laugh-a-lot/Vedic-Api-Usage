@@ -11,13 +11,46 @@ function App() {
   const month = date.toLocaleString('default', { month: 'long' })
   const userName = Object.keys(data)[0]
   const year = date.getFullYear()
-  const userData = data["Satyam Kumar"]
-  
   const monthYear = (month.toLowerCase() + year)
-  const dayData = userData[monthYear]
-  const graphs = Object.keys(dayData["day01"])
 
-  console.log(graphs)
+  const userData = data["Satyam Kumar"]
+  const dayData = userData[monthYear]
+  
+  var jsonTopic = ''
+  var jsonSubTopic = ''
+  
+
+
+  for (var key in userData.april2021) {
+    var topics = {}
+    
+    var jsonData = userData.april2021[key]
+    for (var jsonKey in jsonData)
+    {
+      var subTopics = {}
+      const jsonKeyValue = jsonKey
+      jsonKey = jsonKey.split("/")
+     
+      if (jsonKey.length === 2) {
+        jsonSubTopic = jsonKey[1]
+        jsonTopic = jsonKey[0]
+      } else {
+        jsonTopic = jsonKey[0]
+        jsonSubTopic = 'total'
+      }
+      
+      subTopics[jsonSubTopic] = jsonData[jsonKeyValue]
+      
+      topics[jsonTopic] = Object.assign({}, topics[jsonTopic], subTopics) 
+      
+    }
+    
+    console.log(topics, "topic")
+    userData.april2021[key] = topics
+    
+
+  } console.log(userData.april2021)
+    const graphs = Object.v(dayData["day01"])
   return (
     <div className="App" id="app">
       <div class="container-fluid">

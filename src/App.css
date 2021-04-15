@@ -38,10 +38,10 @@ section {
 }
 
 .grid-wrapper{
-      --auto-grid-min-size: 16rem;
       display: grid;
       grid-gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -58,7 +58,7 @@ section {
     }
     .main-container{
       margin: 0 auto;
-      max-width: 1170px;
+      max-width: 1150px;
       padding:2rem 1rem;
     }
 .userName{

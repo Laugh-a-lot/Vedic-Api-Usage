@@ -4,9 +4,9 @@
       "day01": {
         "total": 526,
         "horoscope/vedic": 111,
-        "horoscope/chartimage": 212,
         "prediction/dailysun": 71,
         "matching/ashtakoot": 131,
+        "horoscope/chartimage": 212,
         "matching/papasamya": 111
       },
       "day02": {
