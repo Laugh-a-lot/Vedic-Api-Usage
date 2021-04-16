@@ -23,13 +23,14 @@ function Graph(props) {
             backgroundColor: 'rgba(52, 170, 255, 0.23)',
             borderColor: props.color,
             borderWidth: 1,
+            pointRadius: 2,
             data: usage
           }
         ]
       }
     return (
       <div className="graphs">
-        <h2 >{props.title }</h2>
+        
         <h3 >Total Usage: { total}</h3>
     
         <Line
@@ -49,6 +50,7 @@ function Graph(props) {
             maintainAspectRatio: true
           }}
         />
+        <h2 >{props.title }</h2>
         </div>
     )
 }
