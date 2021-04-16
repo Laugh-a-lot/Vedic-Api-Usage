@@ -8,9 +8,8 @@ function Graph(props) {
     for (let i = 1; i <= (Object.keys(props.data)).length; ++i) {
         labels.push(i.toString());
     }
-    const tit = props.title
 
-  const usage = (Object.keys(props.data)).map(day => Object.values((props.data[day])[tit]).reduce((a,b) => a+b,0))
+  const usage = (Object.keys(props.data)).map(day => Object.values((props.data[day])[props.title]).reduce((a,b) => a+b,0))
   console.log(usage)
   const total = usage.reduce((a,b) => a+b,0)
     const state = {
@@ -19,11 +18,11 @@ function Graph(props) {
           {
             label: props.title,
             fontSize: 16,
-            fill: false,
+            fill: true,
             lineTension: 0.5,
-            backgroundColor: 'rgba(75,0,0,1)',
+            backgroundColor: 'rgba(52, 170, 255, 0.23)',
             borderColor: props.color,
-            borderWidth: 2,
+            borderWidth: 1,
             data: usage
           }
         ]

@@ -41,12 +41,9 @@ function App() {
       
       topics[jsonTopic] = Object.assign({}, topics[jsonTopic], subTopics)
     }
-    
     dayData[key] = topics
-    
-    
-
-  } 
+  }
+  console.log(dayData)
   allTopics = new Set(allTopics);
   allTopics = Array.from(allTopics)
     
