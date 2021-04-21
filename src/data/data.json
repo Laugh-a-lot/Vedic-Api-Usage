@@ -5,9 +5,12 @@
         "total": 526,
         "horoscope/vedic": 111,
         "prediction/dailysun": 71,
-        "matching/ashtakoot": 131,
+        "matching/ashtakoiop": 131,
         "horoscope/chartimage": 212,
-        "matching/papasamya": 111
+        "matching/papasamya": 111,
+        "matching/ashtakoot": 101,
+        "horoscope/chartoiuoi": 712,
+        "a/b": 243
       },
       "day02": {
         "total": 526,
@@ -29,7 +32,6 @@
         "total": 526,
         "horoscope/vedic": 111,
         "horoscope/chartimage": 212,
-        "prediction/dailysun": 71,
         "matching/ashtakoot": 111,
         "matching/papasamya": 111
       },

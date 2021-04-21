@@ -22,8 +22,14 @@ section {
 
 .dashboard{
   display: flex;
-  
 
+
+}
+@media (max-width: 576px) { 
+  .dashboard{
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .sidebar{
@@ -35,12 +41,16 @@ section {
   height: 100vh;
   /*border: 3px solid rgba(12, 11, 11, 0.678);*/
   box-shadow: 5px 0 2px #888888;
+}@media (max-width: 576px) { 
+  .sidebar{
+    width:100%;
+  }
 }
 
 .grid-wrapper{
       display: grid;
       grid-gap: 2rem;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
       grid-template-rows: 1fr 1fr;
       margin: 0;
       padding: 0;
@@ -48,13 +58,16 @@ section {
 
     }
     .grid-wrapper li{
-      background-color: #faf5f5;
       font-size: 24px;
       list-style-type: none;
       padding: 2rem 1rem;
       text-align: center;
       text-transform: capitalize;
       font-weight: 600;
+      border: 1px solid #A8BECB;
+      border-radius: 8px;
+      box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.25);
+
     }
     .main-container{
       margin: 0 auto;
@@ -64,4 +77,5 @@ section {
 .userName{
   text-align: center;
 }
+
 
