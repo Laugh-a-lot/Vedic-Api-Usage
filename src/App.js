@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Graph from "./components/Graph";
@@ -9,35 +9,30 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      month: (new Date()).toLocaleString("default", { month: "long" }),
+      month: new Date().toLocaleString("default", { month: "long" }),
       allTopics: [],
-      
-    }
+      isParent: false,
+      day_data: {},
+      date: new Date(),
+      userName: Object.keys(data)[0],
+      userData: data["Satyam Kumar"],
+    };
   }
-  const date = new Date();
-  const [month, setMonth] = useState(
-    date.toLocaleString("default", { month: "long" })
-  );
-  const [allTopics, setTopics] = useState([]);
-  const [day_data, setDayData] = useState({});
-  var [isParent, setIsParent] = useState(false);
-  const userName = Object.keys(data)[0];
-  const year = date.getFullYear();
-  const monthYear = month.toLowerCase() + year;
-  const userData = data["Satyam Kumar"];
-  var all_topics = [];
-
-  useEffect(() => {
+  modifiedData = () => {
     var dayData = {};
-    var jsonTopic = "";
-    var jsonSubTopic = "";
-    for (var key in userData[monthYear]) {
+    var all_topics = []
+    const year = this.state.date.getFullYear();
+    const monthYear = this.state.month.toLowerCase() + year;
+    for (var key in this.state.userData[monthYear]) {
       var topics = {};
-
-      var jsonData = userData[monthYear][key];
+      
+      var jsonTopic = "";
+      var jsonSubTopic = "";
+      
+      var jsonData = this.state.userData[monthYear][key];
       for (var jsonKey in jsonData) {
         var subTopics = {};
-        const jsonKeyValue = jsonKey;
+        var jsonKeyValue = jsonKey;
         jsonKey = jsonKey.split("/");
         jsonTopic = jsonKey[0];
         if (jsonKey.length === 2) {
@@ -51,59 +46,75 @@ class App extends Component {
         topics[jsonTopic] = Object.assign({}, topics[jsonTopic], subTopics);
       }
       dayData[key] = topics;
+      
     }
-    setTopics(Array.from(new Set(all_topics)));
-    setDayData(dayData);
-  }, []);
-
-  const handleGraphs = (e) => {
-    const days = Object.keys(day_data);
+    
+    this.setState({
+      allTopics: Array.from(new Set(all_topics)),
+      day_data: dayData,
+    });
+    
+  };
+  
+  handleGraphs = (e) => {
+    const days = Object.keys(this.state.day_data);
     var childElements = days.map((day) =>
-      day_data[day][e.currentTarget.getAttribute("value")]
-        ? Object.keys(day_data[day][e.currentTarget.getAttribute("value")])
+      this.state.day_data[day][e.currentTarget.getAttribute("value")]
+        ? Object.keys(
+            this.state.day_data[day][e.currentTarget.getAttribute("value")]
+          )
         : []
     );
     childElements = new Set(childElements.flat());
-    setIsParent(e.currentTarget.getAttribute("value"));
-    setTopics(Array.from(childElements));
-    
+    this.setState({
+      isParent: e.currentTarget.getAttribute("value"),
+      allTopics: Array.from(childElements),
+    });
   };
-  return (
-    <div className="App" id="app">
-      <div class="container-fluid">
-        <h1 className="heading">Vedic Api Daily Usage</h1>
-        <div className="container-fluid dashboard">
-          <div className="sidebar card">
-            <div className="user">
-              <h2 className="userName">{userName}</h2>
-              <h4>Api usage for month {month}</h4>
-            </div>
-          </div>
 
-          <section className="container">
-            <DatePicker
-              month={month}
-              setMonth={setMonth}
-              monthList={Object.keys(userData)}
-            />
-            <ul class="grid-wrapper">
-              {allTopics.map((topic, index) => (
-                <li onClick={handleGraphs} value={topic} >
-                  <Graph
-                    title={topic}
-                    color={["52, 170, 255", "255, 52, 52"][index % 2]}
-                    data={day_data}
-                    isParent={isParent}
-                    setIsParent={setIsParent}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
+  componentDidMount = () => {
+    this.modifiedData();
+  };
+
+  render()
+  
+  {
+    return (
+      <div className="App" id="app">
+        <div class="container-fluid">
+          <h1 className="heading">Vedic Api Daily Usage</h1>
+          <div className="container-fluid dashboard">
+            <div className="sidebar card">
+              <div className="user">
+                <h2 className="userName">Satyam Kumar</h2>
+                <h4>April</h4>
+              </div>
+            </div>
+
+            <section className="container">
+              <DatePicker
+                month={this.state.month}
+                monthList={Object.keys(this.state.userData)}
+              />
+              <ul class="grid-wrapper">
+                {this.state.allTopics.map((topic, index) => (
+                  <li onClick={this.handleGraphs} value={topic} key={index}>
+                    <Graph
+                      title={topic}
+                      color={["52, 170, 255", "255, 52, 52"][index % 2]}
+                      data={this.state.day_data}
+                      isParent={this.state.isParent}
+                      key={index}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

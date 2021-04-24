@@ -6,7 +6,6 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = { x: 34 }
-    this.tree_graph = { }
   }
   Graph = (props) => {
     const labels = [];
@@ -42,7 +41,7 @@ class User extends Component {
     
   }
  
-  componentWillMount = () => {
+  componentDidMount = () => {
     const { props } = this
     this.Graph(props)
   }
