@@ -82,7 +82,7 @@ class User extends Component {
 
     return (
       <>
-        { this.state.modTopics.map((topic, index) => (
+        { this.state.modTopics.map((topic, index) => (  // this doesnt work as this.state.modTopics return an empty array
           <li onClick={this.handleGraphs} value={topic} key={index}>
             
             <div className="graphs">
