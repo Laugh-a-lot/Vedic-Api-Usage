@@ -78,6 +78,7 @@ class App extends Component {
 
   render()
   
+  
   {
     return (
       <div className="App" id="app">
@@ -97,17 +98,7 @@ class App extends Component {
                 monthList={Object.keys(this.state.userData)}
               />
               <ul class="grid-wrapper">
-                {this.state.allTopics.map((topic, index) => (
-                  <li onClick={this.handleGraphs} value={topic} key={index}>
-                    <Graph
-                      title={topic}
-                      color={["52, 170, 255", "255, 52, 52"][index % 2]}
-                      data={this.state.day_data}
-                      isParent={this.state.isParent}
-                      key={index}
-                    />
-                  </li>
-                ))}
+                <Graph allTopics={this.state.allTopics} data={this.state.day_data}/>
               </ul>
             </section>
           </div>
