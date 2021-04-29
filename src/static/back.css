@@ -17,6 +17,7 @@ align-items: center;  }
   
 .flex{
     display: flex;
+    cursor: pointer;
     margin-right: 100px;
 }
 .vector{
