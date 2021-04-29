@@ -46,7 +46,7 @@ class User extends Component {
             ["rgba(52, 170, 255, 1)", "rgba(255, 52, 52, 1)"][index % 2]
           }`,
           borderWidth: 1,
-          pointRadius: 2,
+          pointRadius: 2.5,
           data: usage,
         },
       ],
@@ -71,7 +71,7 @@ class User extends Component {
     return (
       <>
         {props.allTopics.map((topic, index) => (
-          <li onClick={ !props.isChild ? this.handleGraphs : ''} value={topic} key={index}>
+          <li className={!props.isChild ? "pointer": ""} onClick={ !props.isChild ? this.handleGraphs : ''} value={topic} key={index}>
             <div className="graphs">
               <Line
                 value={topic}

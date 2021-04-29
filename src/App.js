@@ -10,11 +10,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      month: new Date().toLocaleString("default", { month: "long" }),
+      month: new Date().toLocaleString("default", { month: "long" }), //set the month here from the month picker
       allTopics: [],
       isChild: false,
       day_data: {},
-      date: new Date(),
+      year: new Date().getFullYear(),                                 //set the year here from year picker
       userName: Object.keys(data)[0],
       userData: data["Satyam Kumar"],
       parentTopics: []
@@ -23,8 +23,7 @@ class App extends Component {
   modifiedData = () => {
     var dayData = {};
     var all_topics = []
-    const year = this.state.date.getFullYear();
-    const monthYear = this.state.month.toLowerCase() + year;
+    const monthYear = this.state.month.toLowerCase() + this.state.year;
     for (var key in this.state.userData[monthYear]) {
       var topics = {};
       
@@ -96,8 +95,7 @@ class App extends Component {
                 monthList={Object.keys(this.state.userData)}
               />
               {this.state.isChild ? (<Back handleBackButton={this.handleBackButton}/>) : ""}
-              {//this.state.isChild ? (<h2 className="text-center">{(this.state.isChild).toUpperCase()}</h2>) : ""
-              }
+              
 
               <ul class="grid-wrapper">
                 <Graph allTopics={this.state.allTopics} data={this.state.day_data} handleTopicChange={this.handleTopicChange} isChild={this.state.isChild}/>
