@@ -3,53 +3,50 @@ import { Line } from "react-chartjs-2";
 import "../static/graphs.css";
 
 class User extends Component {
-  
   constructor(props) {
-    super(props)
-    this.state = {
-      isParent: false,
-      modData: props.data,  // it is modified json
-      modTopics: props.allTopics,// Here I've initiated the state modData with a list of all the topics like ['horoscope', 'prediction'...]
-      labels: []
-    };
-   for (let i = 1; i <= Object.keys(this.props.data).length; ++i) {
-      this.state.labels.push(i.toString());
-    }
+    super(props);
+    this.state = {};
   }
   Graph = (topic, index) => {
+    const labels = [];
+    for (let i = 1; i <= Object.keys(this.props.data).length; ++i) {
+      labels.push(i.toString());
+    }
     var usage = [];
-    console.log("child comp is loading", this.state.isParent, topic)
-    if (this.state.isParent) {
-     
-      usage = Object.keys(this.state.modData).map((day) =>
-        this.state.modData[day][this.state.isParent][topic]
-          ? ((this.state.modData[day])[this.state.isParent])[topic]
+    if (this.props.isChild) {
+      usage = Object.keys(this.props.data).map((day) =>
+        this.props.data[day][this.props.isChild]
+          ? (this.props.data[day][this.props.isChild][topic] !==undefined ? this.props.data[day][this.props.isChild][topic] : 0)
           : 0
-      )
+      );
     } else {
-      usage = Object.keys(this.state.modData).map((day) =>
-        this.state.modData[day][topic]
-          ? Object.values(this.state.modData[day][topic]).reduce(
+      usage = Object.keys(this.props.data).map((day) =>
+        this.props.data[day][topic]
+          ? Object.values(this.props.data[day][topic]).reduce(
               (a, b) => a + b,
               0
-          )
+            )
           : 0
       );
     }
-
+    console.log(usage, topic)
     const total = usage.reduce((a, b) => a + b, 0);
     const state = {
-      labels: this.state.labels,
+      labels: labels,
       datasets: [
         {
           label: topic,
           fontSize: 16,
           fill: true,
           lineTension: 0.5,
-          backgroundColor: "rgba(52, 170, 255, 0.23)",
-          borderColor: "rgba(52, 170, 255, 1)",
+          backgroundColor: `${
+            ["rgba(52, 170, 255, 0.23)", "rgba(255, 52, 52, 0.23)"][index % 2]
+          }`,
+          borderColor: `${
+            ["rgba(52, 170, 255, 1)", "rgba(255, 52, 52, 1)"][index % 2]
+          }`,
           borderWidth: 1,
-          pointRadius: 1,
+          pointRadius: 2,
           data: usage,
         },
       ],
@@ -58,37 +55,24 @@ class User extends Component {
   };
 
   handleGraphs = (e) => {
-    const days = Object.keys(this.state.modData);
-    console.log(e.currentTarget.getAttribute("value"), "on click")
+    const days = Object.keys(this.props.data);
+    const subTopic = e.currentTarget.getAttribute("value");
     var childElements = days.map((day) =>
-      this.state.modData[day][e.currentTarget.getAttribute("value")]
-        ? Object.keys(
-            this.state.modData[day][e.currentTarget.getAttribute("value")]
-          )
+      this.props.data[day][subTopic]
+        ? Object.keys(this.props.data[day][subTopic])
         : []
     );
-    
-    childElements = new Set(childElements.flat());
-    this.setState({
-      isParent: e.currentTarget.getAttribute("value"),
-      modTopics: Array.from(childElements),
-    });
 
-    
+    childElements = new Set(childElements.flat());
+    this.props.handleTopicChange(Array.from(childElements), subTopic);
   };
   render() {
     const { props } = this;
-   console.log(this.state.modData, this.state.modTopics) // it should show the initially set json and the list of topics but both are empty. 
-
     return (
       <>
-        { this.state.modTopics.map((topic, index) => (
-          <li onClick={this.handleGraphs} value={topic} key={index}>
-            
+        {props.allTopics.map((topic, index) => (
+          <li onClick={ !props.isChild ? this.handleGraphs : ''} value={topic} key={index}>
             <div className="graphs">
-              <h3 value={topic} className="title">
-                Total Usage: {this.state.total}
-              </h3>
               <Line
                 value={topic}
                 height={400}
@@ -123,7 +107,9 @@ class User extends Component {
                   },
                 }}
               />
-              <h2 className="title">{props.title}</h2>
+              <h3 value={topic} className="title">
+                {topic}
+              </h3>
             </div>
           </li>
         ))}

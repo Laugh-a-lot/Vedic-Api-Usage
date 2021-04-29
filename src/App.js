@@ -4,6 +4,7 @@ import "./App.css";
 import Graph from "./components/Graph";
 import DatePicker from "./components/DatePicker";
 import data from "./data/data.json";
+import Back from './components/Back'
 
 class App extends Component {
   constructor(props) {
@@ -11,11 +12,12 @@ class App extends Component {
     this.state = {
       month: new Date().toLocaleString("default", { month: "long" }),
       allTopics: [],
-      isParent: false,
+      isChild: false,
       day_data: {},
       date: new Date(),
       userName: Object.keys(data)[0],
       userData: data["Satyam Kumar"],
+      parentTopics: []
     };
   }
   modifiedData = () => {
@@ -48,30 +50,26 @@ class App extends Component {
       dayData[key] = topics;
       
     }
-    
+    const remTopics =  Array.from(new Set(all_topics))
     this.setState({
-      allTopics: Array.from(new Set(all_topics)),
+      allTopics: remTopics,
       day_data: dayData,
+      parentTopics: remTopics
     });
     
   };
   
-  handleGraphs = (e) => {
-    const days = Object.keys(this.state.day_data);
-    var childElements = days.map((day) =>
-      this.state.day_data[day][e.currentTarget.getAttribute("value")]
-        ? Object.keys(
-            this.state.day_data[day][e.currentTarget.getAttribute("value")]
-          )
-        : []
-    );
-    childElements = new Set(childElements.flat());
-    this.setState({
-      isParent: e.currentTarget.getAttribute("value"),
-      allTopics: Array.from(childElements),
-    });
+  handleTopicChange = (newTopicList, subTopic) => {
+    this.setState({ allTopics: newTopicList, isChild: subTopic })
+    console.log(subTopic)
   };
+  handleBackButton = () => {
+    this.setState({
+      allTopics: this.state.parentTopics,
+      isChild: false
+    })
 
+  }
   componentDidMount = () => {
     this.modifiedData();
   };
@@ -83,7 +81,6 @@ class App extends Component {
     return (
       <div className="App" id="app">
         <div class="container-fluid">
-          <h1 className="heading">Vedic Api Daily Usage</h1>
           <div className="container-fluid dashboard">
             <div className="sidebar card">
               <div className="user">
@@ -92,13 +89,18 @@ class App extends Component {
               </div>
             </div>
 
-            <section className="container">
+            <section className="container m-3">
+              
               <DatePicker
                 month={this.state.month}
                 monthList={Object.keys(this.state.userData)}
               />
+              {this.state.isChild ? (<Back handleBackButton={this.handleBackButton}/>) : ""}
+              {//this.state.isChild ? (<h2 className="text-center">{(this.state.isChild).toUpperCase()}</h2>) : ""
+              }
+
               <ul class="grid-wrapper">
-                <Graph allTopics={this.state.allTopics} data={this.state.day_data}/>
+                <Graph allTopics={this.state.allTopics} data={this.state.day_data} handleTopicChange={this.handleTopicChange} isChild={this.state.isChild}/>
               </ul>
             </section>
           </div>

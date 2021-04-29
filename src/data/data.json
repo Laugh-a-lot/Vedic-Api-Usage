@@ -3,20 +3,20 @@
     "april2021": {
       "day01": {
         "total": 526,
-        "horoscope/vedic": 111,
         "prediction/dailysun": 71,
         "matching/ashtakoiop": 131,
-        "horoscope/chartimage": 212,
         "matching/papasamya": 111,
         "matching/ashtakoot": 101,
-        "horoscope/chartoiuoi": 712,
-        "a/b": 243
+        "a/b": 243,
+        "dosha/saturn": 100,
+        "dosha/mars": 400
       },
       "day02": {
         "total": 526,
-        "horoscope/vedic": 12,
         "horoscope/chartimage": 212,
         "prediction/dailysun": 71,
+        "dosha/saturn": 100,
+        "dosha/mars": 400,
         "matching/ashtakoot": 56,
         "matching/papasamya": 59
       },
@@ -24,9 +24,8 @@
         "total": 524,
         "horoscope/vedic": 33,
         "horoscope/chartimage": 12,
-        "prediction/dailysun": 71,
-        "matching/ashtakoot": 555,
-        "matching/papasamya": 12
+        "prediction/dailysun": 71
+        
       },
       "day04": {
         "total": 526,
@@ -40,6 +39,8 @@
         "horoscope/vedic": 12,
         "horoscope/chartimage": 212,
         "prediction/dailysun": 71,
+        "dosha/saturn": 450,
+        "dosha/mars": 300,
         "matching/ashtakoot": 56,
         "matching/papasamya": 59
       },
@@ -52,7 +53,6 @@
       },
       "day07": {
         "total": 526,
-        "horoscope/vedic": 111,
         "horoscope/chartimage": 212,
         "prediction/dailysun": 71,
         "matching/ashtakoot": 111,
@@ -85,7 +85,6 @@
       "day11": {
         "total": 526,
         "horoscope/vedic": 12,
-        "horoscope/chartimage": 212,
         "prediction/dailysun": 71,
         "matching/ashtakoot": 56,
         "matching/papasamya": 59

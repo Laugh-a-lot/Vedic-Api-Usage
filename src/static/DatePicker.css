@@ -6,7 +6,7 @@
 }
 .dateSelector{
   display: flex;
-
+  margin: 10px -3px;
 
 }
 
@@ -21,7 +21,7 @@
 
 .btn-primary{
   background: #34AAFF;
-
+  width: 177px;
 }
 .custom-btn{
   color: rgb(0, 0, 0);
@@ -29,6 +29,7 @@
   border-color: black;
   border-width: 2px;
   font-weight: 400;
+  width: 175px;
 }
 
 .custom-btn:hover {
